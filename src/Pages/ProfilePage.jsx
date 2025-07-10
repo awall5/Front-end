@@ -64,44 +64,77 @@ const addProduct = async(e) => {
   }, []);
 
   return (
-    <div>
+    <div className="min-h-screen bg-gradient-to-br from-sky-100 to-blue-200">
       <Navbar />
 
-      <div>
-        <form onSubmit={addProduct} className=" mx-auto my-4 flex flex-col items-center gap-5 p-4 bg-sky-600  max-w-150 border-2">
-          <div className="flex gap-4 " >
-            <label>Title</label>
-            <input  name="title" type="text" className="b-1 py-1 px-2 rounded-md border-2" />
+      <div className="flex flex-col items-center mt-8">
+        <form
+          onSubmit={addProduct}
+          className="w-full max-w-md bg-white rounded-xl shadow-xl p-8 border border-blue-200"
+        >
+          <h2 className="text-2xl font-bold text-center text-blue-700 mb-6">Add New Product</h2>
+          <div className="mb-4">
+            <label className="block text-blue-700 font-semibold mb-1">Title</label>
+            <input
+              name="title"
+              type="text"
+              className="w-full py-2 px-3 rounded-md border border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              placeholder="Product title"
+              required
+            />
           </div>
-          <div className="flex gap-4">
-            <label>Price</label>
-            <input name="price" type="number" className="b-1 py-1 px-2 rounded-md border-2" />
+          <div className="mb-4">
+            <label className="block text-blue-700 font-semibold mb-1">Price</label>
+            <input
+              name="price"
+              type="number"
+              className="w-full py-2 px-3 rounded-md border border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              placeholder="Product price"
+              required
+            />
           </div>
-          <div className="flex gap-4">
-            <label>Discription</label>
-            <input name="description" type="text" className="b-1 py-1 px-2 rounded-md border-2" />
+          <div className="mb-4">
+            <label className="block text-blue-700 font-semibold mb-1">Description</label>
+            <input
+              name="description"
+              type="text"
+              className="w-full py-2 px-3 rounded-md border border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              placeholder="Product description"
+              required
+            />
           </div>
-          <div className="flex gap-4">
-            <label>Quantity</label>
-            <input name="quantity" type="number" className="b-1 py-1 px-2 rounded-md border-2" />
+          <div className="mb-6">
+            <label className="block text-blue-700 font-semibold mb-1">Quantity</label>
+            <input
+              name="quantity"
+              type="number"
+              className="w-full py-2 px-3 rounded-md border border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              placeholder="Product quantity"
+              required
+            />
           </div>
-          <button className="b-1 py-1 px-2 rounded-md border-2">Add Product</button>
+          <button
+            className="w-full py-2 px-4 bg-blue-600 text-white font-bold rounded-md hover:bg-blue-700 transition"
+          >
+            Add Product
+          </button>
         </form>
       </div>
 
-      <div className="flex flex-wrap justify-center items-center gap-4 p-4">
-        {products.map((product) => {
-          return (
-            <div
-              key={product._id}
-              className="p-4 border-2 rounded-lg shadow-lg w-64 bg-sky-200 hover:bg-amber-50"
-            >
-              <h2 className="text-xl font-bold">{product.title}</h2>
-              <p className="text-green-600 font-semibold">${product.price}</p>
-              <p className="text-gray-600">{product.description}</p> 
-            </div>
-          );
-        })}
+      <div className="flex flex-wrap justify-center items-center gap-8 p-8">
+        {products.map((product) => (
+          <div
+            key={product._id}
+            className="p-6 border border-blue-200 rounded-xl shadow-lg w-72 bg-white hover:scale-105 hover:shadow-2xl transition transform duration-200"
+          >
+            <h2 className="text-xl font-bold text-blue-800 mb-2">{product.title}</h2>
+            <p className="text-green-600 font-semibold text-lg mb-1">${product.price}</p>
+            <p className="text-gray-600 mb-2">{product.description}</p>
+            <span className="inline-block bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-semibold">
+              Quantity: {product.quantity}
+            </span>
+          </div>
+        ))}
       </div>
     </div>
   );
