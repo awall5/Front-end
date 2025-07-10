@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { Navbar } from "../Components/Navbar";
+import { MyContext, useMyContext } from "../Context/MyContext";
 
 const ProfilePage = () => {
   const [products, setProducts] = useState([]);
-
+  const {setCount} = useMyContext();
   const getData = async () => {
     try {
       const resp = await fetch(`${import.meta.env.VITE_BACKEND_URL}/products`, {
@@ -199,15 +200,28 @@ const ProfilePage = () => {
             </span>
 
             {product._id !== editProductId && (
+              <>
               <button
                 onClick={() => {
                   setEditProductId(product._id);
                   setUpdatedPrice(product.price);
                 }}
-                className="absolute top-4 right-4 py-1 px-4 bg-blue-100 text-blue-700 rounded-full text-xs font-bold hover:bg-blue-200 transition"
+                className="py-1 px-4 bg-blue-100 text-blue-700 rounded-full text-xs font-bold hover:bg-blue-200 transition"
               >
                 Edit
               </button>
+
+              <button
+                onClick={() => {
+                  setCount((prev)=>
+                    prev+1);
+                  
+                }}
+                className="absolute top-4 right-2 py-1 px-2 bg-blue-100 text-blue-700 rounded-full text-xs font-bold hover:bg-blue-200 transition"
+              >
+                Add To Cart
+              </button>
+              </>
             )}
           </div>
         ))}

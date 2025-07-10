@@ -1,7 +1,10 @@
 import {Link} from "react-router";
+import { useMyContext } from "../Context/MyContext";
+
 
 const Navbar = () => {
-return (
+    const {count} = useMyContext();
+    return (
     <nav className="flex items-center justify-between flex-wrap bg-gradient-to-r from-sky-400 to-blue-500 p-5 shadow-lg rounded-b-lg">
         <div className="flex items-center flex-shrink-0 text-white mr-6">
             <span className="font-extrabold text-2xl tracking-tight drop-shadow-lg">🛒 Shopping App</span>
@@ -28,6 +31,7 @@ return (
             >
                 Signup
             </Link>
+            <p>Value: {count}</p>
         </div>
     </nav>
 );
